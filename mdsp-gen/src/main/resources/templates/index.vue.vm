@@ -1,0 +1,243 @@
+<template>
+  <div>
+    <div class="search-container">
+      <div class="search-inp-container">
+        <el-input @keyup.enter.native="handleSearch" placeholder="" v-model="listQuery.username" clearable>
+        </el-input>
+      </div>
+      <el-button class="search-btn" type="primary" icon="el-icon-search" @click="handleSearch">查询</el-button>
+      <el-button class="search-btn" type="primary" icon="el-icon-plus" @click="handleCreate">添加</el-button>
+      <el-button class="search-btn" :autofocus="true" icon="el-icon-refresh" @click="refreshHandle">刷新</el-button>
+    </div>
+    <el-table :key='tableKey' :data="list" v-loading.body="listLoading" border fit highlight-current-row style="width: 100%">
+
+      #foreach($column in $columns)
+        #if($column.columnName != 'id' || $column.columnName != 'create_time' || $column.columnName != 'modify_time' )
+          #if($column.columnName == $pk.columnName)
+            <el-table-column align="center" label="${column.columnName}" width="65">
+              <template slot-scope="scope">
+                <span>{{scope.row.${column.attrName}}}</span>
+              </template>
+            </el-table-column>
+          #else
+            <el-table-column width="200px" align="center" label="${column.columnComment}">
+              <template slot-scope="scope">
+                <span>{{scope.row.${column.attrName}}}</span>
+              </template>
+            </el-table-column>
+          #end
+        #end
+      #end
+      <el-table-column fixed="right" align="center" label="操作" width="150"> <template slot-scope="scope">
+        <el-button v-if="${underlineModuleName}_update" size="small" type="success" @click="handleUpdate(scope.row)">编辑
+        </el-button>
+        <el-button v-if="${underlineModuleName}_delete" size="small" type="danger" @click="handleDelete(scope.row)">删除
+        </el-button>
+      </template> </el-table-column>
+    </el-table>
+    <div v-show="!listLoading" class="pagination-container">
+      <el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page.sync="listQuery.current" :page-sizes="[10,20,30, 50]" :page-size="listQuery.size" layout="total, sizes, prev, pager, next, jumper" :total="total"> </el-pagination>
+    </div>
+    <el-dialog :title="textMap[dialogStatus]" :visible.sync="dialogFormVisible">
+      <el-form :model="form" :rules="rules" ref="form" label-width="100px">
+        #foreach($column in $columns)
+          #if($column.columnName != 'id' && $column.columnName != 'create_time' && $column.columnName != 'modify_time')
+            #if($column.columnName != $pk.columnName)
+              <el-form-item label="${column.columnComment}" prop="${column.attrName}">
+                <el-input v-model="form.${column.attrName}" placeholder="请输入${column.columnComment}"></el-input>
+              </el-form-item>
+            #end
+          #end
+        #end
+      </el-form>
+      <div slot="footer" class="dialog-footer">
+        <el-button @click="cancel('form')">取 消</el-button>
+        <el-button v-if="dialogStatus=='create'" type="primary" @click="create('form')">确 定</el-button>
+        <el-button v-else type="primary" @click="update('form')">确 定</el-button>
+      </div>
+    </el-dialog>
+  </div>
+</template>
+
+<script>
+  import {
+    page${tableInfo.className}Api,
+    create${tableInfo.className}Api,
+    read${tableInfo.className}Api,
+    del${tableInfo.className}Api,
+    update${tableInfo.className}Api
+  } from '@/api/${moduleName}/${secondModuleName}'
+  import { mapGetters } from 'vuex'
+  export default {
+    name: '${secondModuleName}',
+    data() {
+      return {
+        form: {
+      #foreach($column in $columns)
+        #if($column.columnName != $pk.columnName)
+          ${column.attrName}: ''#if($foreach.count != $columns.size()),#end /** ${column.columnComment}*/
+        #end
+      #end
+    },
+      rules: {
+        #foreach($column in $columns)
+          #if($column.columnName != $pk.columnName)
+            ${column.attrName}: [
+            {
+              required: true,
+              message: '请输入${column.columnComment}',
+              trigger: 'blur'
+            },
+            {
+              min: 3,
+              max: 20,
+              message: '长度在 3 到 20 个字符',
+              trigger: 'blur'
+            }
+          ]#if($foreach.count != $columns.size()),#end //
+          #end
+        #end
+      },
+      list: null,
+              total: null,
+              listLoading: true,
+              listQuery: {
+        current: 1,
+                size: 20,
+                name: undefined
+      },
+      dialogFormVisible: false,
+              dialogStatus: '',
+                ${underlineModuleName}_update: false,
+                ${underlineModuleName}_delete: false,
+                ${underlineModuleName}_add: false,
+              textMap: {
+        update: '编辑',
+                create: '创建'
+      },
+      tableKey: 0
+    }
+    },
+    mounted() {
+      this.getList()
+      this.${underlineModuleName}_add = this.permissions['${underlineModuleName}_add']
+      this.${underlineModuleName}_update = this.permissions['${underlineModuleName}_update']
+      this.${underlineModuleName}_delete = this.permissions['${underlineModuleName}_delete']
+      this.${underlineModuleName}_select = this.permissions['${underlineModuleName}_select']
+    },
+    computed: {
+      ...mapGetters(['permissions'])
+    },
+    methods: {
+      getList() {
+        this.listLoading = true
+        page${tableInfo.className}Api(this.listQuery)
+                .then(response => {
+          this.list = response.data.records
+          this.total = response.data.total
+          this.listLoading = false
+        })
+      },
+      handleSearch() {
+        this.listQuery.current = 1
+        this.getList()
+      },
+      refreshHandle() {
+        this.listQuery.current = 1
+        this.listQuery.size = 10
+        this.listQuery.username = ''
+        this.getList()
+      },
+      handleSizeChange(val) {
+        this.listQuery.size = val
+        this.getList()
+      },
+      handleCurrentChange(val) {
+        this.listQuery.current = val
+        this.getList()
+      },
+      handleCreate() {
+        this.resetTemp()
+        this.dialogStatus = 'create'
+        this.dialogFormVisible = true
+      },
+      handleUpdate(row) {
+        read${tableInfo.className}Api(row.id)
+                .then(response => {
+          this.form = response.data
+          this.dialogFormVisible = true
+          this.dialogStatus = 'update'
+        })
+      },
+      handleDelete(row) {
+        this.$confirm('此操作将永久删除, 是否继续?', '提示', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: 'warning'
+        })
+                .then(() => {
+          del${tableInfo.className}Api(row.id)
+      .then(() => {
+          this.$notify({
+            title: '成功',
+            message: '删除成功',
+            type: 'success',
+            duration: 2000
+          })
+        const index = this.list.indexOf(row)
+        this.list.splice(index, 1)
+      })
+      })
+      },
+      create(formName) {
+        const set = this.$refs
+        set[formName].validate(valid => {
+          if (valid) {
+            create${tableInfo.className}Api(this.form).then(() => {
+              this.dialogFormVisible = false
+              this.getList()
+            this.$notify({
+              title: '成功',
+              message: '创建成功',
+              type: 'success',
+              duration: 2000
+            })
+          })
+          } else {
+            return false
+      }
+      })
+      },
+      cancel(formName) {
+        this.dialogFormVisible = false
+        const set = this.$refs
+                set[formName].resetFields()
+      },
+      update(formName) {
+        const set = this.$refs
+                set[formName].validate(valid => {
+          if (valid) {
+            this.dialogFormVisible = false
+            this.form.password = undefined
+            update${tableInfo.className}Api(this.form).then(() => {
+              this.dialogFormVisible = false
+            this.getList()
+            this.$notify({
+              title: '成功',
+              message: '创建成功',
+              type: 'success',
+              duration: 2000
+            })
+          })
+          } else {
+            return false
+      }
+      })
+      },
+      resetTemp() {
+        this.form = {
+        }
+      }
+    }
+  }
+</script>

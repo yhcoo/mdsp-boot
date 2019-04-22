@@ -1,0 +1,20 @@
+package ${tableInfo.servicePackageName};
+
+
+import $!{tableInfo.entityPackageName}.${tableInfo.className};
+import ${tableInfo.queryPackageName}.${tableInfo.className}Query;
+import com.baomidou.mybatisplus.extension.service.IService;
+
+/**
+ * @author $tableInfo.authorName
+ */
+public interface ${tableInfo.className}Service extends IService<${tableInfo.className}> {
+
+  /**
+   * 分页条件查询
+   * @param query
+   * @return
+   */
+    ${tableInfo.className}Query pageByQuery(${tableInfo.className}Query query);
+
+}

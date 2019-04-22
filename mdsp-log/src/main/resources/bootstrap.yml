@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: mdsp-log-service
+  cloud:
+    nacos:
+      config:
+        server-addr: 127.0.0.1:8848
+        file-extension: yml
+        group: BACK_GROUP
+  profiles:
+    active: dev

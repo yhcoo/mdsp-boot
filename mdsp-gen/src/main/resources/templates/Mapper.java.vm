@@ -1,0 +1,24 @@
+package $tableInfo.mapperPackageName;
+
+import ${tableInfo.entityPackageName}.${tableInfo.className};
+import ${tableInfo.queryPackageName}.${tableInfo.className}Query;
+import org.springframework.stereotype.Component;
+
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import org.apache.ibatis.annotations.Param;
+
+
+/**
+ * @author $tableInfo.authorName
+ */
+@Component
+public interface ${tableInfo.className}Mapper extends BaseMapper<${tableInfo.className}>{
+  /**
+   * 信息分页查询
+   * @param query
+   */
+  IPage<${tableInfo.className}> pageByQuery(${tableInfo.className}Query query);
+}
+
+

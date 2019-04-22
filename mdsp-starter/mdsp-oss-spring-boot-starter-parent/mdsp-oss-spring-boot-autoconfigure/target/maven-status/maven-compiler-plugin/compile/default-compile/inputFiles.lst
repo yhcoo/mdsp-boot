@@ -1,0 +1,11 @@
+/Users/kingkey/Documents/Im/mdsp/mdsp-boot/mdsp-starter/mdsp-oss-spring-boot-starter-parent/mdsp-oss-spring-boot-autoconfigure/src/main/java/com/yhcoo/oss/config/CloudStorageConfig.java
+/Users/kingkey/Documents/Im/mdsp/mdsp-boot/mdsp-starter/mdsp-oss-spring-boot-starter-parent/mdsp-oss-spring-boot-autoconfigure/src/main/java/com/yhcoo/oss/exception/CheckedException.java
+/Users/kingkey/Documents/Im/mdsp/mdsp-boot/mdsp-starter/mdsp-oss-spring-boot-starter-parent/mdsp-oss-spring-boot-autoconfigure/src/main/java/com/yhcoo/oss/autoconfigure/OssAutoConfiguration.java
+/Users/kingkey/Documents/Im/mdsp/mdsp-boot/mdsp-starter/mdsp-oss-spring-boot-starter-parent/mdsp-oss-spring-boot-autoconfigure/src/main/java/com/yhcoo/oss/cloud/AliyunCloudStorageService.java
+/Users/kingkey/Documents/Im/mdsp/mdsp-boot/mdsp-starter/mdsp-oss-spring-boot-starter-parent/mdsp-oss-spring-boot-autoconfigure/src/main/java/com/yhcoo/oss/cloud/OSSFactory.java
+/Users/kingkey/Documents/Im/mdsp/mdsp-boot/mdsp-starter/mdsp-oss-spring-boot-starter-parent/mdsp-oss-spring-boot-autoconfigure/src/main/java/com/yhcoo/oss/cloud/QcloudCloudStorageService.java
+/Users/kingkey/Documents/Im/mdsp/mdsp-boot/mdsp-starter/mdsp-oss-spring-boot-starter-parent/mdsp-oss-spring-boot-autoconfigure/src/main/java/com/yhcoo/oss/config/EnableOSS.java
+/Users/kingkey/Documents/Im/mdsp/mdsp-boot/mdsp-starter/mdsp-oss-spring-boot-starter-parent/mdsp-oss-spring-boot-autoconfigure/src/main/java/com/yhcoo/oss/constants/OSSConstant.java
+/Users/kingkey/Documents/Im/mdsp/mdsp-boot/mdsp-starter/mdsp-oss-spring-boot-starter-parent/mdsp-oss-spring-boot-autoconfigure/src/main/java/com/yhcoo/oss/OSSConfig.java
+/Users/kingkey/Documents/Im/mdsp/mdsp-boot/mdsp-starter/mdsp-oss-spring-boot-starter-parent/mdsp-oss-spring-boot-autoconfigure/src/main/java/com/yhcoo/oss/cloud/QiniuCloudStorageService.java
+/Users/kingkey/Documents/Im/mdsp/mdsp-boot/mdsp-starter/mdsp-oss-spring-boot-starter-parent/mdsp-oss-spring-boot-autoconfigure/src/main/java/com/yhcoo/oss/cloud/CloudStorageService.java

@@ -1,0 +1,103 @@
+package ${tableInfo.controllerPackageName};
+
+
+import lombok.extern.slf4j.Slf4j;
+import com.yhcoo.common.annotation.SysLog;
+import com.yhcoo.common.constants.MdspServiceNameConstants;
+import com.yhcoo.common.util.ApiResult;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiOperation;
+import org.springframework.beans.factory.annotation.Autowired;
+import com.yhcoo.common.util.Assert;
+
+import ${tableInfo.entityPackageName}.${tableInfo.className};
+import ${tableInfo.queryPackageName}.${tableInfo.className}Query;
+import ${tableInfo.servicePackageName}.${tableInfo.className}Service;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.HashMap;
+import java.util.Collection;
+
+/**
+ * @author $tableInfo.authorName
+ */
+@Slf4j
+@RestController
+@RequestMapping("/${secondModuleName}")
+@Api(value = "${tableInfo.tableComment} Controller", tags = {"${tableInfo.tableComment}操作接口"})
+public class $!{tableInfo.className}Controller {
+
+  private static final String MODULE_NAME = "${tableInfo.tableComment}模块";
+  private static final String SERVICE_ID = MdspServiceNameConstants.MDSP_LITEMALL_SERVICE;
+
+  @Autowired
+  private ${tableInfo.className}Service ${secondModuleName}Service;
+
+
+  @SysLog(serviceId = SERVICE_ID, moduleName = MODULE_NAME, actionName = "${tableInfo.tableComment}添加")
+  @ApiOperation(value = "添加", notes = "添加${tableInfo.tableComment}信息", httpMethod = "POST")
+  @ApiImplicitParam(name = "${secondModuleName}", value = "查询条件${secondModuleName}", required = true, dataType = "${tableInfo.className}")
+  @PostMapping("create")
+  public ApiResult<Boolean> create(@RequestBody ${tableInfo.className} ${secondModuleName}){
+    validate(${secondModuleName});
+    return new ApiResult<>(${secondModuleName}Service.save(${secondModuleName}));
+  }
+
+  @SysLog(serviceId = SERVICE_ID, moduleName = MODULE_NAME, actionName = "${tableInfo.tableComment}修改")
+  @ApiOperation(value = "修改", notes = "修改${tableInfo.tableComment}信息", httpMethod = "POST")
+  @ApiImplicitParam(name = "id", value = "查询条件ID", required = true, dataType = "${tableInfo.className}")
+  @PostMapping("update")
+  public ApiResult<Boolean> update(@RequestBody ${tableInfo.className} ${secondModuleName}){
+    Assert.isBlank(${secondModuleName}.getId(),"ID不能为空");
+    validate(${secondModuleName});
+    return new ApiResult<>(${secondModuleName}Service.updateById(${secondModuleName}));
+  }
+
+
+  @SysLog(serviceId = SERVICE_ID, moduleName = MODULE_NAME, actionName = "${tableInfo.tableComment}主键删除")
+  @ApiOperation(value = "主键删除", notes = "主键删除${tableInfo.tableComment}信息", httpMethod = "POST")
+  @ApiImplicitParam(name = "id", value = "查询条件ID", required = true, dataType = "Long")
+  @PostMapping("delete")
+  public ApiResult<Boolean> deleteById(Long id){
+    Assert.isBlank( id,"ID不能为空");
+    return new ApiResult<>(${secondModuleName}Service.removeById(id));
+  }
+
+
+  @SysLog(serviceId = SERVICE_ID, moduleName = MODULE_NAME, actionName = "${tableInfo.tableComment}信息分页查询")
+  @ApiOperation(value = "主键查询", notes = "主键查询${tableInfo.tableComment}信息", httpMethod = "GET")
+  @ApiImplicitParam(name = "id", value = "查询条件ID", required = true, dataType = "Long")
+  @GetMapping("read")
+  public ApiResult<${tableInfo.className}> readById(Long id){
+    Assert.isBlank( id,"ID不能为空");
+    return new ApiResult(${secondModuleName}Service.getById(id));
+  }
+
+
+  @SysLog(serviceId = SERVICE_ID, moduleName = MODULE_NAME, actionName = "${tableInfo.tableComment}信息分页查询")
+  @ApiOperation(value = "获取${tableInfo.tableComment}分页查询", notes = "${tableInfo.tableComment}信息分页查询", httpMethod = "GET")
+  @ApiImplicitParam(name = "query", value = "用户信息查询条件", required = false, dataType = "${tableInfo.className}Query")
+  @GetMapping("/page")
+  public ApiResult<${tableInfo.className}Query> pageByQuery(${tableInfo.className}Query query){
+    return new ApiResult(${secondModuleName}Service.pageByQuery(query));
+  }
+
+##  @SysLog(serviceId = SERVICE_ID, moduleName = MODULE_NAME, actionName = "${tableInfo.tableComment}查询所有")
+##  @ApiOperation(value = "查询所有信息", notes = "查询所有信息", httpMethod = "GET")
+##  @GetMapping("all")
+##  public ApiResult<Collection> selectAll(){
+##    return new ApiResult<>(${secondModuleName}Service.listByMap(new HashMap<>()));
+##  }
+
+  /** 验证 */
+  private void validate(${tableInfo.className} ${secondModuleName}) {
+    #foreach ($column in ${tableInfo.columnInfo})
+      #if($!tableInfo.pk.attrName !=  $column.attrName)
+    Assert.isBlank( ${secondModuleName}.get${column.upAttrName}(),"$!{column.columnComment}不能为空");
+      #end
+    #end
+  }
+
+
+}

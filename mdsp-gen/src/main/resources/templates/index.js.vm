@@ -1,0 +1,40 @@
+import request from '@/utils/request'
+
+export function page${tableInfo.className}Api(query) {
+  return request({
+    url: '/${moduleName}/${secondModuleName}/page',
+    method: 'get',
+    params: query
+  })
+}
+
+export function create${tableInfo.className}Api(obj) {
+  return request({
+    url: '/${moduleName}/${secondModuleName}/create',
+    method: 'post',
+    data: obj
+  })
+}
+
+export function read${tableInfo.className}Api(id) {
+  return request({
+    url: '/${moduleName}/${secondModuleName}/read?id=' + id,
+    method: 'get'
+  })
+}
+
+export function del${tableInfo.className}Api(id) {
+  return request({
+    url: '/${moduleName}/${secondModuleName}/delete?id=' + id,
+    method: 'post'
+  })
+}
+
+export function update${tableInfo.className}Api(obj) {
+  return request({
+    url: '/${moduleName}/${secondModuleName}/update',
+    method: 'post',
+    data: obj
+  })
+}
+

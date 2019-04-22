@@ -1,0 +1,65 @@
+
+
+-- 添加模块菜单
+INSERT INTO `mdsp_upms`.`sys_resource`(`id`, `name`, `type`, `path`, `permission`, `color`, `parent_id`, `icon`, `component`, `sort`, `create_time`, `modify_time`, `del_flag`, `url`, `method`)
+VALUES (1116634105528655881, '${tableInfo.tableComment}', '0', '/${moduleName}', '/${moduleName}', NULL, -1, 'develop', 'Layout', 2, '2019-03-02 15:07:08', '2019-03-03 22:32:28', '0', '', NULL);
+
+-- 添加父菜单
+INSERT INTO `mdsp_upms`.`sys_resource`(`id`, `name`, `type`, `path`, `permission`, `color`, `parent_id`, `icon`, `component`, `sort`, `create_time`, `modify_time`, `del_flag`, `url`, `method`)
+VALUES (${ids[1]}, '${tableInfo.tableComment}', '0', '${secondModuleName}', '/${moduleName}/${secondModuleName}', NULL, 1116634105528655881, 'yonghuguanli', 'views/${moduleName}/${secondModuleName}/index', 2, '2017-11-02 22:24:37', '2019-03-03 17:05:20', '0', '', NULL);
+
+-- 添加子菜单
+INSERT INTO `mdsp_upms`.`sys_resource`(`id`, `name`, `type`, `path`, `permission`, `color`, `parent_id`, `icon`, `component`, `sort`, `create_time`, `modify_time`, `del_flag`, `url`, `method`)
+VALUES (${ids[2]}, '${tableInfo.tableComment}', '0', '/${moduleName}/${secondModuleName}', '/${moduleName}/${secondModuleName}', NULL, ${ids[1]}, 'yonghuguanli', 'views/${moduleName}/${secondModuleName}/index', 2, '2017-11-02 22:24:37', '2019-03-03 17:05:20', '0', '', NULL);
+
+-- 添加按钮菜单
+INSERT INTO `mdsp_upms`.`sys_resource`(`id`, `name`, `type`, `path`, `permission`, `color`, `parent_id`, `icon`, `component`, `sort`, `create_time`, `modify_time`, `del_flag`, `url`, `method`)
+VALUES (${ids[3]}, '添加', '1', NULL, '${underlineModuleName}_add', NULL, ${ids[2]}, NULL, NULL, 1, '2018-11-05 15:49:44', '2019-03-03 22:06:42', '0', '/${moduleName}/${secondModuleName}/*', 'POST');
+
+INSERT INTO `mdsp_upms`.`sys_resource`(`id`, `name`, `type`, `path`, `permission`, `color`, `parent_id`, `icon`, `component`, `sort`, `create_time`, `modify_time`, `del_flag`, `url`, `method`)
+VALUES (${ids[4]}, '修改', '1', NULL, '${underlineModuleName}_update', NULL, ${ids[2]}, NULL, NULL, 1, '2018-11-05 15:50:02', '2019-03-03 22:07:33', '0', '/${moduleName}/${secondModuleName}/*', 'PUT');
+
+INSERT INTO `mdsp_upms`.`sys_resource`(`id`, `name`, `type`, `path`, `permission`, `color`, `parent_id`, `icon`, `component`, `sort`, `create_time`, `modify_time`, `del_flag`, `url`, `method`)
+VALUES (${ids[5]}, '删除', '1', NULL, '${underlineModuleName}_delete', NULL, ${ids[2]}, NULL, NULL, 5, '2018-11-05 15:50:26', '2019-03-03 22:07:40', '0', '/${moduleName}/${secondModuleName}/*', 'DELETE');
+
+INSERT INTO `mdsp_upms`.`sys_resource`(`id`, `name`, `type`, `path`, `permission`, `color`, `parent_id`, `icon`, `component`, `sort`, `create_time`, `modify_time`, `del_flag`, `url`, `method`)
+VALUES (${ids[6]}, '查询', '1', NULL, '${underlineModuleName}_select', NULL, ${ids[2]}, NULL, NULL, 1, '2018-11-05 15:50:26', '2019-03-03 22:07:58', '0', '/${moduleName}/${secondModuleName}/*', 'GET');
+
+
+
+
+##-- 添加父菜单
+##INSERT INTO `mdsp_upms`.`sys_resource`(`id`, `name`, `type`, `path`, `permission`, `color`, `parent_id`, `icon`, `component`, `sort`, `create_time`, `modify_time`, `del_flag`, `url`, `method`)
+##VALUES (${ids[0]}, '${tableInfo.tableComment}', '0', '${secondModuleName}', '/${moduleName}/${secondModuleName}', NULL, -1, 'yonghuguanli', 'views/${moduleName}/${secondModuleName}/index', 2, '2017-11-02 22:24:37', '2019-03-03 17:05:20', '0', '', NULL);
+##
+##-- 添加子菜单
+##INSERT INTO `mdsp_upms`.`sys_resource`(`id`, `name`, `type`, `path`, `permission`, `color`, `parent_id`, `icon`, `component`, `sort`, `create_time`, `modify_time`, `del_flag`, `url`, `method`)
+##VALUES (${ids[1]}, '${tableInfo.tableComment}', '0', '${secondModuleName}', '/${moduleName}/${secondModuleName}', NULL, ${ids[0]}, 'yonghuguanli', 'views/${moduleName}/${secondModuleName}/index', 2, '2017-11-02 22:24:37', '2019-03-03 17:05:20', '0', '', NULL);
+##
+##-- 添加按钮菜单
+##INSERT INTO `mdsp_upms`.`sys_resource`(`id`, `name`, `type`, `path`, `permission`, `color`, `parent_id`, `icon`, `component`, `sort`, `create_time`, `modify_time`, `del_flag`, `url`, `method`)
+##VALUES (${ids[2]}, '添加${tableInfo.tableComment}', '1', NULL, '${underlineModuleName}_add', NULL, ${ids[1]}, , NULL, NULL, 1, '2018-11-05 15:49:44', '2019-03-03 22:06:42', '0', '/${moduleName}/${secondModuleName}/*', 'POST');
+##
+##INSERT INTO `mdsp_upms`.`sys_resource`(`id`, `name`, `type`, `path`, `permission`, `color`, `parent_id`, `icon`, `component`, `sort`, `create_time`, `modify_time`, `del_flag`, `url`, `method`)
+##VALUES (${ids[3]}, '修改${tableInfo.tableComment}', '1', NULL, '${underlineModuleName}_update', NULL, ${ids[1]}, , NULL, NULL, 1, '2018-11-05 15:50:02', '2019-03-03 22:07:33', '0', '/${moduleName}/${secondModuleName}/*', 'PUT');
+##
+##INSERT INTO `mdsp_upms`.`sys_resource`(`id`, `name`, `type`, `path`, `permission`, `color`, `parent_id`, `icon`, `component`, `sort`, `create_time`, `modify_time`, `del_flag`, `url`, `method`)
+##VALUES (${ids[4]}, '删除${tableInfo.tableComment}', '1', NULL, '${underlineModuleName}_delete', NULL, ${ids[1]}, , NULL, NULL, 5, '2018-11-05 15:50:26', '2019-03-03 22:07:40', '0', '/${moduleName}/${secondModuleName}/*', 'DELETE');
+##
+##INSERT INTO `mdsp_upms`.`sys_resource`(`id`, `name`, `type`, `path`, `permission`, `color`, `parent_id`, `icon`, `component`, `sort`, `create_time`, `modify_time`, `del_flag`, `url`, `method`)
+##VALUES (${ids[5]}, '查询${tableInfo.tableComment}', '1', NULL, '${underlineModuleName}_select', NULL, ${ids[1]}, , NULL, NULL, 1, '2018-11-05 15:50:26', '2019-03-03 22:07:58', '0', '/${moduleName}/${secondModuleName}/*', 'GET');
+##
+
+
+
+
+
+
+
+
+
+
+
+
+
+
