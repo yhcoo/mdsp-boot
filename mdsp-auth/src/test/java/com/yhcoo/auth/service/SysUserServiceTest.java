@@ -10,9 +10,9 @@ import org.springframework.test.context.junit4.SpringRunner;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class SysUserServiceTest {
-
-    @Autowired
-    private SysUserService sysUserService;
+//
+//    @Autowired
+//    private SysUserService sysUserService;
 
 //    @Test
 //    public void findByUsername() {
@@ -23,8 +23,8 @@ public class SysUserServiceTest {
     @Test
     public void testPassword() {
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-        String password = passwordEncoder.encode("yhcoo");
-        System.out.println("=============="+password);
+        String password = passwordEncoder.encode("mdspwd");
+        System.out.println("======= fisher ======="+password);
     }
 
 

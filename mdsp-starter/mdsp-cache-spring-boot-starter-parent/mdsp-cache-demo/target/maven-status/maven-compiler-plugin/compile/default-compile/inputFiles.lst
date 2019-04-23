@@ -1,8 +1,0 @@
-/Users/kingkey/Documents/Im/mdsp/mdsp-boot/mdsp-starter/mdsp-cache-spring-boot-starter-parent/mdsp-cache-demo/src/main/java/com/yhcoo/cache/demo/config/WebMvcConfiguration.java
-/Users/kingkey/Documents/Im/mdsp/mdsp-boot/mdsp-starter/mdsp-cache-spring-boot-starter-parent/mdsp-cache-demo/src/main/java/com/yhcoo/cache/demo/config/PerformanceInterceptor.java
-/Users/kingkey/Documents/Im/mdsp/mdsp-boot/mdsp-starter/mdsp-cache-spring-boot-starter-parent/mdsp-cache-demo/src/main/java/com/yhcoo/cache/demo/CachingDemoApplication.java
-/Users/kingkey/Documents/Im/mdsp/mdsp-boot/mdsp-starter/mdsp-cache-spring-boot-starter-parent/mdsp-cache-demo/src/main/java/com/yhcoo/cache/demo/controller/CacheRedisCaffeineController.java
-/Users/kingkey/Documents/Im/mdsp/mdsp-boot/mdsp-starter/mdsp-cache-spring-boot-starter-parent/mdsp-cache-demo/src/main/java/com/yhcoo/cache/demo/vo/ResultMap.java
-/Users/kingkey/Documents/Im/mdsp/mdsp-boot/mdsp-starter/mdsp-cache-spring-boot-starter-parent/mdsp-cache-demo/src/main/java/com/yhcoo/cache/demo/vo/UserVO.java
-/Users/kingkey/Documents/Im/mdsp/mdsp-boot/mdsp-starter/mdsp-cache-spring-boot-starter-parent/mdsp-cache-demo/src/main/java/com/yhcoo/cache/demo/util/TimestampUtil.java
-/Users/kingkey/Documents/Im/mdsp/mdsp-boot/mdsp-starter/mdsp-cache-spring-boot-starter-parent/mdsp-cache-demo/src/main/java/com/yhcoo/cache/demo/service/CacheRedisCaffeineService.java

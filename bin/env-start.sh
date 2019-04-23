@@ -1,9 +1,10 @@
 #!/usr/bin/env bash
 
-brew services start rabbitmq
+#brew services start rabbitmq
 brew services start redis
 #./redis-sentinel
 sudo mysql.server start
+
 
 /usr/local/Cellar/nacos-saas/bin/startup.sh -m standalone
 

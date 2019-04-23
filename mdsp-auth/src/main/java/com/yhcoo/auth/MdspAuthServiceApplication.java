@@ -11,7 +11,6 @@ import org.springframework.context.annotation.ComponentScan;
 @EnableFeignClients
 @SpringBootApplication
 public class MdspAuthServiceApplication {
-
 	public static void main(String[] args) {
 		SpringApplication.run(MdspAuthServiceApplication.class, args);
 	}

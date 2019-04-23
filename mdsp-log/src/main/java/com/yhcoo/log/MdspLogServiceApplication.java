@@ -15,4 +15,5 @@ public class MdspLogServiceApplication {
     public static void main(String[] args) {
         SpringApplication.run(MdspLogServiceApplication.class, args);
     }
+
 }

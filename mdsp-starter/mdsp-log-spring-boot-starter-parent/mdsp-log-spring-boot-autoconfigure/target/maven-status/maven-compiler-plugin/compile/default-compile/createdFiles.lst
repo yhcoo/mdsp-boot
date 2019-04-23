@@ -1,2 +1,6 @@
 com/yhcoo/log/autoconfigure/SysLogAspect.class
+com/yhcoo/log/service/SysLogService$LogFeignConfig.class
+com/yhcoo/log/service/SysLogService.class
+com/yhcoo/log/service/fallback/SysLogServiceFallback.class
+com/yhcoo/log/model/SysLog.class
 com/yhcoo/log/autoconfigure/LogAutoConfiguration.class

@@ -4,7 +4,6 @@ package com.yhcoo.auth.config;
 import com.yhcoo.auth.handler.CustomWebResponseExceptionTranslator;
 import com.yhcoo.auth.security.UserDetailsImpl;
 import com.yhcoo.common.constants.MdspServiceNameConstants;
-import com.yhcoo.common.constants.MqQueueNameConstant;
 import com.yhcoo.common.constants.SecurityConstants;
 import com.yhcoo.common.constants.UserConstants;
 import com.yhcoo.common.dto.SysLogDTO;
@@ -12,7 +11,6 @@ import com.yhcoo.common.enums.OperationStatusEnum;
 import com.yhcoo.common.enums.SysLogTypeEnum;
 import com.yhcoo.common.util.UrlUtil;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -60,8 +58,8 @@ public class OAuth2AuthorizationServerConfig extends AuthorizationServerConfigur
     @Autowired
     private DataSource dataSource;
 
-    @Autowired
-    private RabbitTemplate rabbitTemplate;
+//    @Autowired
+//    private RabbitTemplate rabbitTemplate;
 
     /**
      * 配置token存储到redis中
@@ -148,7 +146,6 @@ public class OAuth2AuthorizationServerConfig extends AuthorizationServerConfigur
                         .setServiceId(MdspServiceNameConstants.MDSP_AUTH)
                         .setRemoteAddr(UrlUtil.getRemoteHost(request))
                         .setMethod(request.getMethod());
-                rabbitTemplate.convertAndSend(MqQueueNameConstant.SYS_LOG_QUEUE, sysLogDTO);
                 log.info("当前用户为：{}", user);
                 // 如果用户不为空 则把id放入jwt token中
                 if (user != null) {

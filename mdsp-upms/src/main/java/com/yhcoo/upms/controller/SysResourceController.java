@@ -41,7 +41,7 @@ public class SysResourceController {
      * 获取当前用户的菜单树
      * @return
      */
-   @SysLog(serviceId = MdspServiceNameConstants.MDSP_USER_SERVICE, moduleName = MODULE_NAME, actionName = "根据token查询当前用户权限的菜单树")
+    @SysLog(serviceId = MdspServiceNameConstants.MDSP_USER_SERVICE, moduleName = MODULE_NAME, actionName = "根据token查询当前用户权限的菜单树")
     @ApiOperation(value = "获取当前用户的菜单树", notes = "根据token查询当前用户权限的菜单树", httpMethod = "GET")
     @GetMapping("/menu/tree")
     public ApiResult<List<SysResourceTree>> getMenuTree(){

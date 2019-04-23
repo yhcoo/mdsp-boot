@@ -1,5 +1,6 @@
 package com.yhcoo.log.autoconfigure;
 
+import cn.hutool.core.bean.BeanUtil;
 import com.yhcoo.common.annotation.SysLog;
 import com.yhcoo.common.constants.MqQueueNameConstant;
 import com.yhcoo.common.dto.SysLogDTO;
@@ -7,26 +8,30 @@ import com.yhcoo.common.enums.OperationStatusEnum;
 import com.yhcoo.common.util.UrlUtil;
 import com.yhcoo.common.util.UserUtil;
 import com.google.gson.Gson;
+import com.yhcoo.log.service.SysLogService;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.Signature;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.reflect.MethodSignature;
-import org.springframework.amqp.rabbit.core.RabbitTemplate;
+//import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import java.lang.reflect.Method;
+import java.util.Date;
 
 @Aspect
 @Slf4j
 public class SysLogAspect {
 
-    @Autowired
-    private RabbitTemplate rabbitTemplate;
+//    @Autowired
+//    private SysLogService sysLogService;
+
+
     @Around("execution(public com.yhcoo.common.util.ApiResult *(..))")
 //    @Around(value = "@annotation(SysLog)")
     public Object handlerControllerMethod(ProceedingJoinPoint pjp) {
@@ -70,10 +75,10 @@ public class SysLogAspect {
         log.info("[{}]use time: {}", pjp.getSignature(), elapsedTime);
         sysLogDTO.setTime(String.valueOf(elapsedTime));
 
-        // 发送消息到 系统日志队列
-        if(targetMethod.isAnnotationPresent(SysLog.class)) {
-            rabbitTemplate.convertAndSend(MqQueueNameConstant.SYS_LOG_QUEUE, sysLogDTO);
-        }
+        com.yhcoo.log.model.SysLog sysLog = new com.yhcoo.log.model.SysLog();
+        BeanUtil.copyProperties(sysLogDTO, sysLog);
+        sysLog.setCreateTime(new Date());
+//        sysLogService.save(sysLog);
         return result;
     }
 

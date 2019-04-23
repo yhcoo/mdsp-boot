@@ -1,6 +1,0 @@
-/Users/kingkey/Documents/Im/mdsp/mdsp-boot/mdsp-starter/mdsp-cache-spring-boot-starter-parent/mdsp-cache-spring-boot-autoconfigure/src/main/java/com/yhcoo/cache/support/CacheMessage.java
-/Users/kingkey/Documents/Im/mdsp/mdsp-boot/mdsp-starter/mdsp-cache-spring-boot-starter-parent/mdsp-cache-spring-boot-autoconfigure/src/main/java/com/yhcoo/cache/support/RedisCaffeineCache.java
-/Users/kingkey/Documents/Im/mdsp/mdsp-boot/mdsp-starter/mdsp-cache-spring-boot-starter-parent/mdsp-cache-spring-boot-autoconfigure/src/main/java/com/yhcoo/cache/CacheRedisCaffeineProperties.java
-/Users/kingkey/Documents/Im/mdsp/mdsp-boot/mdsp-starter/mdsp-cache-spring-boot-starter-parent/mdsp-cache-spring-boot-autoconfigure/src/main/java/com/yhcoo/cache/support/CacheMessageListener.java
-/Users/kingkey/Documents/Im/mdsp/mdsp-boot/mdsp-starter/mdsp-cache-spring-boot-starter-parent/mdsp-cache-spring-boot-autoconfigure/src/main/java/com/yhcoo/cache/CacheRedisCaffeineAutoConfiguration.java
-/Users/kingkey/Documents/Im/mdsp/mdsp-boot/mdsp-starter/mdsp-cache-spring-boot-starter-parent/mdsp-cache-spring-boot-autoconfigure/src/main/java/com/yhcoo/cache/support/RedisCaffeineCacheManager.java
