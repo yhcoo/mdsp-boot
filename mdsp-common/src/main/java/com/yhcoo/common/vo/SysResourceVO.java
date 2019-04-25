@@ -1,6 +1,8 @@
 package com.yhcoo.common.vo;
 
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
@@ -20,6 +22,7 @@ public class SysResourceVO {
     /**
      * 主键
      */
+    @JsonSerialize(using= ToStringSerializer.class)
     private Long id;
 
     /**

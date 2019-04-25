@@ -1,5 +1,7 @@
 package com.yhcoo.common.vo;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import lombok.Data;
 
 import java.time.LocalDateTime;
@@ -12,6 +14,7 @@ public class SysUserVo {
     /**
      * 主键ID
      */
+    @JsonSerialize(using= ToStringSerializer.class)
     private Long userId;
 
     /**
