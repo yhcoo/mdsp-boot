@@ -53,6 +53,7 @@ public class SysResourceVO {
     /**
      * 父资源id
      */
+    @JsonSerialize(using= ToStringSerializer.class)
     private Long parentId;
 
     /**
