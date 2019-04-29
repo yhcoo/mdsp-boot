@@ -187,7 +187,7 @@ public class RedisCaffeineCache extends AbstractValueAdaptingCache {
 	
 	/**
 	 * @description 缓存变更时通知其他节点清理本地缓存
-	 * @author fuwei.deng
+	 *
 	 * @date 2018年1月31日 下午3:20:28
 	 * @version 1.0.0
 	 * @param message
@@ -198,7 +198,7 @@ public class RedisCaffeineCache extends AbstractValueAdaptingCache {
 	
 	/**
 	 * @description 清理本地缓存
-	 * @author fuwei.deng
+	 *
 	 * @date 2018年1月31日 下午3:15:39
 	 * @version 1.0.0
 	 * @param key
